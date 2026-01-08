@@ -7,6 +7,9 @@ syntax on
 set showcmd
 set foldmethod=indent
 set nofoldenable
+set nobackup
+set nowritebackup
+set signcolumn=yes
 set ruler
 set encoding=utf-8
 set showmatch
@@ -17,8 +20,6 @@ set noshowmode
 set updatetime=100
 set splitbelow
 set splitright
-" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Medium/complete/Fira%20Code%20Medium%20Nerd%20Font%20Complete.ttf
-set guifont=FiraCode\ Nerd\ Font\ 11
 
 call plug#begin('~/.vim/plugged')
 
@@ -27,27 +28,29 @@ Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'chun-yang/auto-pairs'
 Plug 'easymotion/vim-easymotion'
-Plug 'fatih/vim-go'
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+" Plug 'akinsho/toggleterm.nvim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'mg979/vim-visual-multi'
-Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'npm ci' }
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'rbong/vim-flog'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
+Plug 'vim-airline/vim-airline'
 " Plug 'the-zeitgeist/static-headers.nvim'
+
+" Lang syntax/helper
+Plug 'fatih/vim-go'
+Plug 'HerringtonDarkholme/yats.vim'
 
 " Testing stage
 Plug 'tpope/vim-surround'
@@ -116,6 +119,12 @@ nmap <Leader>m <Plug>(easymotion-s2)
 nmap <leader>f :FZF --reverse<CR>
 nmap <leader>ff :Rg<CR>
 
+" Find files using Telescope command-line sugar.
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 " Nerdtree
 nmap <Leader>nt :NERDTreeFind<CR>
 
@@ -167,3 +176,4 @@ endif
 
 " Use <CR> to confirm completion, use:
 inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+
